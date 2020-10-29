@@ -16,7 +16,7 @@ st.title("Upload + Classification Example")
 
 uploaded_file = st.file_uploader("Choose an image...", type="jpg") #file upload
 
-learn_inf = torch.load("first_resnet18_9ep_096.pkl") #load trained model
+learn_inf = torch.load("first_resnet18_9ep_096.pkl",map_location=torch.device('cpu')) #load trained model
 #classify
 if uploaded_file is not None:
     img = Image.open(uploaded_file)
