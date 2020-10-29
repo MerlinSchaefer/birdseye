@@ -11,8 +11,8 @@ import streamlit as st
 import numpy as np
 import torch
 from PIL import Image
-from fastai.vision.all import load_learner
-from pathlib import Path
+from fastai.vision.all import load_learner, Path
+#from pathlib import Path
 #app
 st.title("Upload + Classification Example")
 
