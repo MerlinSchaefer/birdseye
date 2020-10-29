@@ -12,12 +12,13 @@ import numpy as np
 import torch
 from PIL import Image
 from fastai.vision.all import load_learner
+from pathlib import Path
 #app
 st.title("Upload + Classification Example")
 
 uploaded_file = st.file_uploader("Choose an image...", type="jpg") #file upload
 
-learn_inf = load_learner("first_resnet18_9ep_096.pkl") #load trained model
+learn_inf = load_learner(Path("first_resnet18_9ep_096.pkl")) #load trained model
 learn_inf.model.cpu()
 #classify
 if uploaded_file is not None:
