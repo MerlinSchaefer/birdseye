@@ -1,4 +1,5 @@
 streamlit == 0.62.1
-fastai == 2.0.16
+torch == 1.6.0
 numpy == 1.18.1
+Pillow == 7.0.0
 

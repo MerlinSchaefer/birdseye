@@ -8,14 +8,15 @@ Created on Sun Oct 25 12:29:07 2020
 # bird classifier app
 #imports
 import streamlit as st
-from fastai.vision.all import load_learner, Image
+import torch
 import numpy as np
+from PIL import Image
 #app
 st.title("Upload + Classification Example")
 
 uploaded_file = st.file_uploader("Choose an image...", type="jpg") #file upload
 
-learn_inf = load_learner("first_training.pkl") #load trained model
+learn_inf = torch.load("first_training.pkl") #load trained model
 #classify
 if uploaded_file is not None:
     img = Image.open(uploaded_file)
