@@ -12,7 +12,7 @@ import numpy as np
 import torch
 from PIL import Image
 from fastai.vision.all import load_learner, Path
-from pathlib import Path
+#from pathlib import Path
 #import pathlib
 #temp = pathlib.WindowsPath
 #pathlib.WindowsPath = pathlib.PosixPath
