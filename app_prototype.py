@@ -12,7 +12,7 @@ import numpy as np
 import torch
 from PIL import Image
 from fastai.vision.all import load_learner, Path
-from pathlib import Path
+#from pathlib import Path
 #import pathlib
 #temp = pathlib.WindowsPath
 #pathlib.WindowsPath = pathlib.PosixPath
@@ -28,7 +28,7 @@ No Problem! Just upload your image and let the classifier tell you!
 """)
 uploaded_file = st.file_uploader("Choose an image...", type="jpg") #file upload
 
-learn_inf = load_learner(Path("EU_first_34.pkl")) #load trained model
+learn_inf = load_learner("EU_first_34.pkl") #load trained model
 learn_inf.model.cpu()
 #classify
 if uploaded_file is not None:
