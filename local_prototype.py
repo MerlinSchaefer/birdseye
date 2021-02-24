@@ -24,12 +24,34 @@ You can use this app to classify birds from images.
 Did you take a picture of a bird, but aren't sure which species it is?
 No Problem! Just upload your image and let the classifier tell you!
 
-*Note: This first version only knows birds from Europe (100 Species), classifiers for other continents will be implemented soon*
+*Note: This first version only knows birds from Europe (100 Species) and North America (224 Species), classifiers for other continents will be implemented soon*
 """)
-uploaded_file = st.file_uploader("Choose an image...", type="jpg") #file upload
 
-learn_inf = load_learner(Path("C:/Users/ms101/OneDrive/DataScience_ML/projects/birds_classifier/EU_first_34.pkl")) #load trained model
-learn_inf.model.cpu()
+
+uploaded_file = st.file_uploader("Choose an image...", type="jpg") #file upload
+continents = {"Europe": "EU",
+"North America":"NA", 
+"South America":"SA", 
+"Africa":"AF", 
+"Asia":"AS", 
+"Australia Oceania":"AU", 
+"Antarctica":"AN"}
+
+habitat = st.sidebar.selectbox("On which continent did you spot this bird?", list(continents.keys()))
+
+
+
+#load model
+try:
+    learn_inf = load_learner(Path(f"C:/Users/ms101/OneDrive/DataScience_ML/projects/birds_classifier/{continents.get(habitat)}_first_34.pkl"))#load trained model
+    learn_inf.model.cpu()
+except FileNotFoundError:
+    st.title("There seems to be no classifier for this habitat, please choose another one")
+ 
+
+
+
+
 #classify
 if uploaded_file is not None:
     img = Image.open(uploaded_file)
@@ -37,9 +59,18 @@ if uploaded_file is not None:
     st.write("")
     st.write("Classifying...")
     image = np.asarray(img)
-    label = learn_inf.predict(image)
-    if label[0][0] in "AEIOU":
+    label,prob_idx,prob = learn_inf.predict(image)
+    prob_perc = round(float(prob[prob_idx])*100,2)
+    if label[0] in "AEIOU":
         st.write("## This looks like an")
     else:
         st.write("## This looks like a")
-    st.title(label[0].replace("_"," "))
+    st.title(label.replace("_"," "))
+    st.write(f"The classifier is {prob_perc}% sure")
+    st.write("""*Note: if the classifier is not at least 90 percent sure, 
+    there is a good chance that it either does not know the species 
+    or the picture is not of a high enough quality*""")
+
+
+    #check whether model selection works
+    st.write(f"C:/Users/ms101/OneDrive/DataScience_ML/projects/birds_classifier/{continents.get(habitat)}_first_34.pkl")
