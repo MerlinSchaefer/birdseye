@@ -39,7 +39,7 @@ habitat = st.sidebar.selectbox("On which continent did you spot this bird?", lis
 
 #load model
 try:
-    learn_inf = load_learner(Path(f"C:/Users/ms101/OneDrive/DataScience_ML/projects/birds_classifier/{continents.get(habitat)}_first_34.pkl"))#load trained model
+    learn_inf = load_learner(Path(f"C:/Users/ms101/OneDrive/DataScience_ML/projects/birds_classifier/App/{continents.get(habitat)}_first_34.pkl"))#load trained model
     learn_inf.model.cpu()
 except FileNotFoundError:
     st.title("There seems to be no classifier for this habitat, please choose another one")
