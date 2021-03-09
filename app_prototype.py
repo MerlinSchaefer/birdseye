@@ -19,12 +19,11 @@ pathlib.WindowsPath = pathlib.PosixPath
 #app
 st.title("Bird Classifier")
 st.write("""
-You can use this app to classify birds from images.
 
 Did you take a picture of a bird, but aren't sure which species it is?
 No Problem! Just upload your image and let the classifier tell you!
 
-*Note: This first version only knows birds from Europe (100 Species) and North America (224 Species), classifiers for other continents will be implemented soon*
+*Note: This version knows birds from Europe (100 species),North America (224 species), South America (164), Africa (66 species), Asia (95 species), Australia and Oceania (49 species) and Antarctica (5 species)*
 """)
 uploaded_file = st.file_uploader("Choose an image...", type="jpg") #file upload
 continents = {"Europe": "EU",
